@@ -1,0 +1,7 @@
+.maestros-container {
+    color: black;
+    font-size: 20px;
+    letter-spacing: 2px;
+    display: flex;
+    height: 100vh;
+}

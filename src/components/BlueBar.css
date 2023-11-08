@@ -1,0 +1,18 @@
+.blue-bar {
+    display: flex;
+    align-items: center;
+    background-color: #007bff; /* Azul */
+    padding: 10px;
+    height: 300px;
+    color: #fff;
+  }
+  
+  .image {
+    width: 250px; /* Ajusta el ancho de la imagen según tus necesidades */
+    height: auto; /* Ajusta la altura de la imagen según tus necesidades */
+    margin-right: 10px; /* Ajusta el espacio entre la imagen y el texto */
+  }
+  
+p{
+  color: black;
+}

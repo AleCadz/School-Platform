@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #A92334;
+    padding: 10px;
+    color: #fff;
+  }
+  
+  .logo {
+    width: 50px; /* Ajusta el ancho de la imagen según tus necesidades */
+    height: auto; /* Ajusta la altura de la imagen según tus necesidades */
+    margin-right: 10px; /* Ajusta el espacio entre la imagen y los botones */
+  }
+  
+  .button-text {
+    margin: 0 10px;
+    padding: 6px 12px;
+    border: 1px solid #A92334; /* Ajusta el color del borde según tus necesidades */
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button-text:hover {
+    background-color: #A92334; /* Ajusta el color de fondo al pasar el mouse sobre el texto */
+    color: #fff; /* Ajusta el color del texto al pasar el mouse sobre el texto */
+  }
+  
