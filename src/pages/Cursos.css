@@ -1,0 +1,24 @@
+/* Cursos.css */
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  
+  .curso-item {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black; /* Agrega un borde negro */
+    border-radius: 8px;
+    overflow: hidden; /* Para asegurar que el borde no aumente el tamaño del elemento */
+  }
+  
+  .curso-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid black; /* Línea divisoria en la parte inferior de la imagen */
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+  

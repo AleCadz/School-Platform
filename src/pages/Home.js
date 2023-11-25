@@ -2,13 +2,15 @@ import React from 'react';
 import './Home.css';
 import BlueBar from '../components/BlueBar';
 
-const Home = () => {
+const Home = ({correoUsuario}) => {
   return (
     <div>
       <BlueBar />
-      <h1>Caracteristicas de TEC Academy</h1>
+      <h1>Bienvenido {correoUsuario}</h1> <br></br>
       <div className="container">
+      
         <div className="column">
+          
           <h2>Cursos</h2>
           <p>Navega a través de varios cursos académicos que se adapten a tus necesidades de aprendizaje</p>
           <br /><br />
