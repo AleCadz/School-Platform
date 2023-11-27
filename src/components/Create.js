@@ -23,10 +23,10 @@ const Create = () => {
         <div className='container'>
             <div className='row'>
                 <div className='col'>
-                    <h1>Crear Entrega</h1>
+                    <h1>Crear Tarea</h1>
                     <form onSubmit={store}>
                         <div className='mb-3'>
-                            <label className='form-label'>Alumno</label>
+                            <label className='form-label'>Titulo</label>
                             <input
                                 value={alumno}
                                 onChange={(e) => setAlumno(e.target.value)}
@@ -36,7 +36,7 @@ const Create = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <label className='form-label'>Contenido</label>
+                            <label className='form-label'>Descripcion</label>
                             <input
                                 value={contenido}
                                 onChange={(e) => setContenido(e.target.value)}
@@ -56,7 +56,7 @@ const Create = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <label className='form-label'>Tarea</label>
+                            <label className='form-label'>Fecha de entrega</label>
                             <input
                                 value={tarea}
                                 onChange={(e) => setTarea(e.target.value)}

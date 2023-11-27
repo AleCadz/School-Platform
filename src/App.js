@@ -10,6 +10,7 @@ import NavBar from './components/NavBar'; // Importa el componente NavBar
 import Cursos from './pages/Cursos';
 import Home from './pages/Home';
 import Tareas from './pages/Tareas';
+import ProgWebAlumno from './pages/ProgWebAlumno';
 import Maestros from './pages/Maestros'
 import Documentos from './pages/Documentos'
 import ProgWeb from './pages/ProgWeb'
@@ -46,11 +47,12 @@ function App() {
         <>
           <NavBar />
           <Routes>
-            <Route path="/Cursos" element={<Cursos />} />
+            <Route path="/Cursos" element={<Cursos correoUsuario={usuario.email}/>} />
             <Route path="/Maestros" element={<Maestros />} />
             <Route path="/Documentos" element={<Documentos />} />
             <Route path="/tareas" element={<Tareas />} />
             <Route path="/ProgWeb" element={<ProgWeb/>} />
+            <Route path="/ProgWebAlumno" element={<ProgWebAlumno/>} />
             <Route path="/create" element={<Create/>}/>
             <Route path="/edit" element={<Edit/>}/>
             <Route path="/show" element={<Show/>}/>

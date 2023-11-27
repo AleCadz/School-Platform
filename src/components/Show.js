@@ -1,97 +1,96 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { collection, getDocs, getDoc, deleteDoc, doc } from 'firebase/firestore'
-import { db } from '../firebaseConfig/firebase'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './Show.css';
+import { collection, getDocs, getDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../firebaseConfig/firebase';
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
-const MySwal = withReactContent(Swal)
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
+
+const Task = ({ entrega, deleteEntrega }) => {
+  const { id, Alumno, Curso, Tarea, Contenido } = entrega;
+
+  const confirmDelete = () => {
+    MySwal.fire({
+      title: '¿Estás seguro?',
+      text: 'No puedes deshacer esto',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borrar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteEntrega(id);
+        MySwal.fire({
+          title: '¡Eliminado!',
+          text: 'Tu archivo ha sido borrado',
+          icon: 'success',
+        });
+      }
+    });
+  };
+
+  return (
+    <div className="card mb-3">
+      <div className="card-body">
+        <h5 className="card-title">{Alumno}</h5>
+        <h6 className="card-subtitle mb-2 text-muted">{Curso}</h6>
+        <p className="card-text">{Tarea}</p>
+        <p className="card-text">{Contenido}</p>
+        <Link to={`/edit/${id}`} className="btn btn-primary me-2">
+          Editar
+        </Link>
+        <button onClick={confirmDelete} className="btn btn-danger">
+          Borrar
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const Show = () => {
+  const [entregas, setEntregas] = useState([]);
 
-  const [entregas, setEntregas] = useState([])
+  const entregasCollection = collection(db, 'entregas');
 
-  const entregasCollection = collection(db, "entregas")
-  //obtener
   const getEntregas = async () => {
-    const data = await getDocs(entregasCollection)
-    setEntregas(
-      data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    )
-    console.log(entregas)
-  }
-  //borrar
+    const data = await getDocs(entregasCollection);
+    setEntregas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   const deleteEntrega = async (id) => {
-
-    const entregaDoc = doc(db, "entregas", id)
-    await deleteDoc(entregaDoc)
-    getEntregas()
-  }
-
-const confirmDelete = (id) =>{
-  MySwal.fire({
-    title: "¿Estas seguro?",
-    text: "No puedes deshacer esto",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si, borrar"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      deleteEntrega(id)
-      MySwal.fire({
-        title: "¡Eliminado!",
-        text: "Tu archivo ha sido borrado",
-        icon: "success"
-      });
-    }
-  });
-}
+    const entregaDoc = doc(db, 'entregas', id);
+    await deleteDoc(entregaDoc);
+    getEntregas();
+  };
 
   useEffect(() => {
-    getEntregas()
-  }, [])
+    getEntregas();
+  }, []);
+
   return (
-    <>
-      <div className='container'>
-        <div className='row'>
-          <div className='col'>
-            <div className='d-grid gap-2'>
-              <Link to="/create" className='btn btn.secondary mt-2 mb-2'>Create</Link>
-
-            </div>
-            <table className='table table-dark table-hover'>
-              <thead>
-                <tr>
-                  <th>Alumno</th>
-                  <th>Curso</th>
-                  <th>Tarea</th>
-                  <th>Contenido</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {entregas.map((entrega)=> (
-                  <tr key={entrega.id}>
-                    <td>{entrega.Alumno}</td>
-                    <td>{entrega.Curso}</td>
-                    <td>{entrega.Tarea}</td>
-                    <td>{entrega.Contenido}</td>
-                    <td>
-                    <Link to={`/edit/${entrega.id}`}><i className="fa-solid fa-pen"></i></Link>
-                      <button onClick={()=> {confirmDelete(entrega.id)}} className='btn btn-danger'><i className="fa-solid fa-trash-can"></i></button>
-                    </td>
-                  </tr>
-                )) }
-              </tbody>
-            </table>
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <div className="d-grid gap-2">
+            <h1>Tareas de los alumnos</h1>
+            <Link to="/create" className="btn btn.secondary mt-2 mb-2">
+              <h1>Crear nueva tarea</h1>
+            </Link>
+          </div>
+          <div className="row row-cols-1 row-cols-md-2 g-4">
+            {entregas.map((entrega) => (
+              <div key={entrega.id} className="col">
+                <Task entrega={entrega} deleteEntrega={deleteEntrega} />
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default Show
+export default Show;

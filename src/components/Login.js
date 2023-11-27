@@ -2,20 +2,23 @@ import React from 'react';
 import img from '../assets/logo.png'
 import imgProfile from '../assets/imgAutomatas.png'
 import { useState } from 'react';
-
+import { collection, addDoc} from 'firebase/firestore'
 import { appFireBase, db } from '../firebaseConfig/firebase';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 const auth = getAuth(appFireBase)
 
+
+
 const Login = () => {
   const [registrando, setRegistrando] = useState(false)
-
+  const usuariosCollection = collection(db, "usuarios")
   const funAutenticacion = async (e) => {
     e.preventDefault();
     const correo = e.target.email.value;
     const contrasena = e.target.password.value;
     
     if(registrando){
+      await addDoc(usuariosCollection, { Correo: correo, Tipo: 'Alumno'})
       await createUserWithEmailAndPassword(auth, correo, contrasena)
     }else{
       await signInWithEmailAndPassword(auth, correo, contrasena)

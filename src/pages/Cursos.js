@@ -21,7 +21,7 @@ const cursosData = [
   // Agrega más objetos de datos según sea necesario
 ];
 
-const Cursos = () => {
+const Cursos = ({correoUsuario}) => {
   return (
     <div>
       <h1>Cursos</h1>
