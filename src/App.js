@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Show from './components/Show'
 import Create from './components/Create'
 import Edit from './components/Edit'
+import EditAlumno from './components/EditAlumno'
 import { Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import NavBar from './components/NavBar'; // Importa el componente NavBar
@@ -57,6 +58,7 @@ function App() {
             <Route path="/edit" element={<Edit/>}/>
             <Route path="/show" element={<Show/>}/>
             <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/editAlumno/:id" element={<EditAlumno />} />
             <Route path="*" element={<Home correoUsuario={usuario.email}/>} />
           </Routes>
         </>

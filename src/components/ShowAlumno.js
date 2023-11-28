@@ -38,12 +38,9 @@ const Task = ({ entrega, deleteEntrega }) => {
         <h6 className="card-subtitle mb-2 text-muted">{Curso}</h6>
         <p className="card-text">{Tarea}</p>
         <p className="card-text">{Contenido}</p>
-        <Link to={`/edit/${id}`} className="btn btn-primary me-2">
-          Editar
+        <Link to={`/editAlumno/${id}`} className="btn btn-primary me-2">
+          Entregar
         </Link>
-        <button onClick={confirmDelete} className="btn btn-danger">
-          Borrar
-        </button>
       </div>
     </div>
   );
@@ -73,6 +70,7 @@ const ShowAlumno = () => {
     <div className="container">
       <div className="row">
         <div className="col">
+          <h1>Tareas</h1>
           <div className="row row-cols-1 row-cols-md-2 g-4">
             {entregas.map((entrega) => (
               <div key={entrega.id} className="col">
