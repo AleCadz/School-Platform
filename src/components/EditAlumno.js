@@ -4,6 +4,7 @@ import { updateDoc, doc, getDoc } from "firebase/firestore" // Import getDoc her
 import { uploadFile } from "../firebaseConfig/firebase"
 import { db } from "../firebaseConfig/firebase"
 
+
 const EditAlumno = () => {
     const [Archivo, setArchivo] = useState('')
     const [editingArchivo, setEditingArchivo] = useState(false)
@@ -12,10 +13,11 @@ const EditAlumno = () => {
 
     const update = async (e) => {
         e.preventDefault()
+        handleSubmit()
         const product = doc(db, "entregas", id)
         const data = { Archivo: Archivo }
         await updateDoc(product, data)
-        navigate('/')
+
     }
 
     useEffect(() => {
@@ -36,6 +38,17 @@ const EditAlumno = () => {
         setEditingArchivo(true)
     }
 
+    const [file, setFile] = useState(null)
+    const handleSubmit = async (e) => {
+        try {
+            const result = await uploadFile(file, id);
+            console.log(result)
+        } catch(error){
+            console.error(error)
+            alert('Fallo al subir')
+        }
+    }
+
     return (
         <div className='container'>
             <div className='row'>
@@ -45,7 +58,7 @@ const EditAlumno = () => {
                         {editingArchivo ? (
                             <div className='mb-3'>
                                 <label className='form-label'>Archivo</label>
-                                <input type="file" name="" id= "" onChange={e => uploadFile(e.target.files[0], id)}/>
+                                <input type="file" name="" id="" onChange={e => setFile(e.target.files[0], id)} />
                                 <input
                                     value={Archivo}
                                     onChange={(e) => setArchivo(e.target.value)}
