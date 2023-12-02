@@ -10,6 +10,7 @@ import { useState } from 'react';
 import NavBar from './components/NavBar'; // Importa el componente NavBar
 import Cursos from './pages/Cursos';
 import Home from './pages/Home';
+import CursoElegido from './pages/CursoElegido'
 import Tareas from './pages/Tareas';
 import ProgWebAlumno from './pages/ProgWebAlumno';
 import Maestros from './pages/Maestros'
@@ -60,6 +61,7 @@ function App() {
             <Route path="/edit" element={<Edit/>}/>
             <Route path="/show" element={<Show/>}/>
             <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/cursos/:id" element={<CursoElegido />} />
             <Route path="/editAlumno/:id" element={<EditAlumno />} />
             <Route path="*" element={<Home correoUsuario={usuario.email}/>} />
           </Routes>

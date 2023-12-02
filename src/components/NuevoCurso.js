@@ -68,6 +68,19 @@ const NuevoCurso = () => {
             onChange={handleInputChange}
           />
         </div>
+        <div className="mb-3">
+          <label htmlFor="image" className="form-label">
+           Link a imagen
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="image"
+            name="image"
+            value={nuevoCurso.image}
+            onChange={handleInputChange}
+          />
+        </div>
         <button type="submit" className="btn btn-primary">
           Agregar Curso
         </button>
