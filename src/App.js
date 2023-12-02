@@ -14,6 +14,7 @@ import Tareas from './pages/Tareas';
 import ProgWebAlumno from './pages/ProgWebAlumno';
 import Maestros from './pages/Maestros'
 import Documentos from './pages/Documentos'
+import NuevoCurso from './components/NuevoCurso';
 import ProgWeb from './pages/ProgWeb'
 import { appFireBase, db } from './firebaseConfig/firebase';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
@@ -55,6 +56,7 @@ function App() {
             <Route path="/ProgWeb" element={<ProgWeb/>} />
             <Route path="/ProgWebAlumno" element={<ProgWebAlumno/>} />
             <Route path="/create" element={<Create/>}/>
+            <Route path="/nuevo-curso" element={<NuevoCurso/>} />
             <Route path="/edit" element={<Edit/>}/>
             <Route path="/show" element={<Show/>}/>
             <Route path="/edit/:id" element={<Edit />} />

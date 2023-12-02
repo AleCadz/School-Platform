@@ -42,20 +42,21 @@ const Edit = () => {
         <div className='container'>
         <div className='row'>
             <div className='col'>
-                <h1>Editar entrega</h1>
+                <h1>Editar tarea</h1>
                  <form onSubmit={update}>
-                    <div className='mb-3'>
-                        <label className='form-label'>Alumno</label>
+                    
+                 <div className='mb-3'>
+                        <label className='form-label'>Tarea</label>
                         <input
-                            value={Alumno}
-                            onChange={ (e) => setAlumno(e.target.value)} 
+                            value={Tarea}
+                            onChange={ (e)=> setTarea(e.target.value)} 
                             type="text"
                             className='form-control'
-                        />
+                        />                 
                     </div>  
 
                     <div className='mb-3'>
-                        <label className='form-label'>Contenido</label>
+                        <label className='form-label'>Instrucciones</label>
                         <input
                             value={Contenido}
                             onChange={ (e)=> setContenido(e.target.value)} 
@@ -68,20 +69,21 @@ const Edit = () => {
                         <label className='form-label'>Curso</label>
                         <input
                             value={Curso}
-                            onChange={ (e)=> setContenido(e.target.value)} 
+                            onChange={ (e)=> setCurso(e.target.value)} 
                             type="text"
                             className='form-control'
                         />                 
                     </div>  
 
+                    
                     <div className='mb-3'>
-                        <label className='form-label'>Tarea</label>
+                        <label className='form-label'>Alumno</label>
                         <input
-                            value={Tarea}
-                            onChange={ (e)=> setContenido(e.target.value)} 
+                            value={Alumno}
+                            onChange={ (e) => setAlumno(e.target.value)} 
                             type="text"
                             className='form-control'
-                        />                 
+                        />
                     </div>  
 
                     <button type='submit' className='btn btn-primary'>Actualizar</button>

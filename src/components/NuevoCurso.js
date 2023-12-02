@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig/firebase';
 
-const Documentos = () => {
+const NuevoCurso = () => {
   const [nuevoCurso, setNuevoCurso] = useState({
     title: '',
     image: '', // Puedes manejar la imagen de manera similar a cómo lo haces en el componente Cursos
@@ -76,4 +76,4 @@ const Documentos = () => {
   );
 };
 
-export default Documentos;
+export default NuevoCurso;

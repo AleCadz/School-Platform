@@ -48,6 +48,11 @@ const Cursos = ({ correoUsuario }) => {
     <div>
       <h1>Cursos</h1>
       <div className="cursos-grid">
+        {/* Botón para agregar nuevo curso */}
+        <Link to="/nuevo-curso" className="btn btn-primary mb-3">
+          Agregar Nuevo Curso
+        </Link>
+        {/* Mapeo de los cursos existentes */}
         {cursosData.map((curso) => (
           <Link
             to={userType === 'Alumno' ? '/ProgWebAlumno' : curso.link}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Show.css';
-import { collection, getDocs, getDoc, deleteDoc, doc } from 'firebase/firestore';
-import { db } from '../firebaseConfig/firebase';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { db, storage } from '../firebaseConfig/firebase'; // Asegúrate de importar storage también
+import { getStorage, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -10,6 +11,7 @@ const MySwal = withReactContent(Swal);
 
 const Task = ({ entrega, deleteEntrega }) => {
   const { id, Alumno, Curso, Tarea, Contenido } = entrega;
+  const storageRef = ref(storage, `${id}`);
 
   const confirmDelete = () => {
     MySwal.fire({
@@ -32,6 +34,15 @@ const Task = ({ entrega, deleteEntrega }) => {
     });
   };
 
+  const handleDownload = async () => {
+    try {
+      const downloadURL = await getDownloadURL(storageRef);
+      window.open(downloadURL); // Abre el archivo en una nueva ventana del navegador
+    } catch (error) {
+      console.error('Error al obtener la URL de descarga:', error);
+    }
+  };
+
   return (
     <div className="card mb-3">
       <div className="card-body">
@@ -44,6 +55,9 @@ const Task = ({ entrega, deleteEntrega }) => {
         </Link>
         <button onClick={confirmDelete} className="btn btn-danger">
           Borrar
+        </button>
+        <button onClick={handleDownload} className="btn btn-success">
+          Descargar
         </button>
       </div>
     </div>

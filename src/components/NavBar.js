@@ -19,9 +19,7 @@ const Navbar = () => {
         <Link to="/" className="logo-link">
           <img src={logo} alt="logo" className="logo" /> 
         </Link>
-        <Link to="/tareas" className="button-text" onClick={() => handleButtonClick("Tareas")}>
-          Tareas
-        </Link>
+
         <Link to="/cursos" className="button-text" onClick={() => handleButtonClick("Cursos")}>
           Cursos
         </Link>
