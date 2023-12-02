@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './Cursos.css';
-import imgWeb from '../assets/imgWeb.jpg'; // Import the image
-import imgAutomatas from '../assets/imgAutomatas.png';
 import { Link } from 'react-router-dom';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig/firebase';
-
-const cursosData = [
-  {
-    id: 1,
-    title: 'Programacion Web',
-    image: imgWeb, // Use the imported variable
-    link: '/ProgWeb'
-  },
-  {
-    id: 2,
-    title: 'Automatas',
-    image: imgAutomatas,
-    link: '/Documentos'
-  },
-  // Add more data objects as needed
-];
 
 const Cursos = ({ correoUsuario }) => {
   const [userType, setUserType] = useState('');
+  const [cursos, setCursos] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const cursosCollection = collection(db, 'cursos');
+      const querySnapshot = await getDocs(cursosCollection);
+      const cursosData = [];
+
+      querySnapshot.forEach((doc) => {
+        cursosData.push(doc.data());
+      });
+
+      setCursos(cursosData);
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const checkUserType = async () => {
@@ -53,10 +52,10 @@ const Cursos = ({ correoUsuario }) => {
           Agregar Nuevo Curso
         </Link>
         {/* Mapeo de los cursos existentes */}
-        {cursosData.map((curso) => (
+        {cursos.map((curso, index) => (
           <Link
             to={userType === 'Alumno' ? '/ProgWebAlumno' : curso.link}
-            key={curso.id}
+            key={index}
             className="curso-item"
           >
             <img src={curso.image} alt={curso.title} />

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from '@firebase/firestore';
-import {getStorage, uploadBytes, ref, getDownloadURL} from 'firebase/storage';
+import { getStorage, uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVcOaOT3y-PJaaTOm6IXa9GaA0nfGvPIo",
@@ -24,11 +24,11 @@ const storage = getStorage(appFireBase)
  * @returns {Promise<string>} url
  */
 
-export async function uploadFile(file, ruta){
+export async function uploadFile(file, ruta) {
   const storageRef = ref(storage, ruta)
-  await uploadBytes (storageRef, file)
+  await uploadBytes(storageRef, file)
   const url = await getDownloadURL(storageRef)
   return url
 }
 
-export { appFireBase, db, storage}; // Exporta appFireBase y db por separado
+export { appFireBase, db, storage }; // Exporta appFireBase y db por separado

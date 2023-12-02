@@ -54,7 +54,7 @@ function App() {
             <Route path="/Documentos" element={<Documentos />} />
             <Route path="/tareas" element={<Tareas />} />
             <Route path="/ProgWeb" element={<ProgWeb/>} />
-            <Route path="/ProgWebAlumno" element={<ProgWebAlumno/>} />
+            <Route path="/cursos/ProgWebAlumno" element={<ProgWebAlumno/>} />
             <Route path="/create" element={<Create/>}/>
             <Route path="/nuevo-curso" element={<NuevoCurso/>} />
             <Route path="/edit" element={<Edit/>}/>
