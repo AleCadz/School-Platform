@@ -19,6 +19,7 @@ import NuevoCurso from './components/NuevoCurso';
 import ProgWeb from './pages/ProgWeb'
 import { appFireBase, db } from './firebaseConfig/firebase';
 import {getAuth, onAuthStateChanged} from 'firebase/auth'
+import ShowAlumno from './components/ShowAlumno';
 const auth = getAuth(appFireBase)
 
 
@@ -61,7 +62,7 @@ function App() {
             <Route path="/edit" element={<Edit/>}/>
             <Route path="/show" element={<Show/>}/>
             <Route path="/edit/:id" element={<Edit />} />
-            <Route path="/cursos/:id" element={<CursoElegido />} />
+            <Route path="/cursos/:id" element={<ShowAlumno />} />
             <Route path="/editAlumno/:id" element={<EditAlumno />} />
             <Route path="*" element={<Home correoUsuario={usuario.email}/>} />
           </Routes>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { collection, getDocs, getDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebaseConfig/firebase';
 
@@ -38,8 +38,11 @@ const Task = ({ entrega, deleteEntrega }) => {
         <h6 className="card-subtitle mb-2 text-muted">{Curso}</h6>
         <p className="card-text">{Tarea}</p>
         <p className="card-text">{Contenido}</p>
-        <Link to={`/editAlumno/${id}`} className="btn btn-primary me-2">
-          Entregar
+        <button onClick={confirmDelete} className="btn btn-danger me-2">
+          Borrar
+        </button>
+        <Link to={`/editAlumno/${id}`} className="btn btn-primary">
+          Editar
         </Link>
       </div>
     </div>
@@ -47,13 +50,26 @@ const Task = ({ entrega, deleteEntrega }) => {
 };
 
 const ShowAlumno = () => {
-  const [entregas, setEntregas] = useState([]);
 
+
+  const [entregas, setEntregas] = useState([]);
   const entregasCollection = collection(db, 'entregas');
+
+  const location = useLocation();
+  const pathname = location.pathname; // Obtiene la ruta actual
+  const cursoElegidoEncoded = pathname.split('/').pop(); // Obtiene la última parte de la ruta
+
+  // Decodificar los espacios (%20) a espacios normales
+  const cursoElegido = decodeURIComponent(cursoElegidoEncoded);
+
+  console.log("curso elegido: " + cursoElegido);
 
   const getEntregas = async () => {
     const data = await getDocs(entregasCollection);
-    setEntregas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const filteredData = data.docs
+      .map((doc) => ({ ...doc.data(), id: doc.id }))
+      .filter((entrega) => entrega.Curso === cursoElegido); // Filtrar por el campo Curso
+    setEntregas(filteredData);
   };
 
   const deleteEntrega = async (id) => {
@@ -70,7 +86,7 @@ const ShowAlumno = () => {
     <div className="container">
       <div className="row">
         <div className="col">
-          <h1>Tareas</h1>
+          <h1>Tareas de {cursoElegido}</h1>
           <div className="row row-cols-1 row-cols-md-2 g-4">
             {entregas.map((entrega) => (
               <div key={entrega.id} className="col">

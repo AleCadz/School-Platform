@@ -55,19 +55,7 @@ const NuevoCurso = () => {
         <div className="mb-3">
           {/* Input para la imagen */}
         </div>
-        <div className="mb-3">
-          <label htmlFor="link" className="form-label">
-            Enlace del Curso
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="link"
-            name="link"
-            value={nuevoCurso.link}
-            onChange={handleInputChange}
-          />
-        </div>
+        
         <div className="mb-3">
           <label htmlFor="image" className="form-label">
            Link a imagen

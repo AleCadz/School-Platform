@@ -54,7 +54,7 @@ const Cursos = ({ correoUsuario }) => {
         {/* Mapeo de los cursos existentes */}
         {cursos.map((curso, index) => (
           <Link
-            to={userType === 'Alumno' ? '/ProgWebAlumno' : curso.link}
+            to={userType === 'Alumno' ? curso.title : curso.title}
             key={index}
             className="curso-item"
           >
