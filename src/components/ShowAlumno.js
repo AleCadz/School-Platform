@@ -8,7 +8,7 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
 const Task = ({ entrega, deleteEntrega }) => {
-  const { id, Alumno, Curso, Tarea, Contenido } = entrega;
+  const { id, Alumno, Curso, Titulo, Descripcion, FechaEntrega } = entrega;
 
   const confirmDelete = () => {
     MySwal.fire({
@@ -34,10 +34,11 @@ const Task = ({ entrega, deleteEntrega }) => {
   return (
     <div className="card mb-3">
       <div className="card-body">
-        <h5 className="card-title">{Alumno}</h5>
+        <h5 className="card-title">{Titulo}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{Curso}</h6>
-        <p className="card-text">{Tarea}</p>
-        <p className="card-text">{Contenido}</p>
+        <h6 className="card-subtitle mb-2 text-muted">{FechaEntrega}</h6>
+        <p className="card-text">{Alumno}</p>
+        <p className="card-text">{Descripcion}</p>
         <button onClick={confirmDelete} className="btn btn-danger me-2">
           Borrar
         </button>
@@ -49,9 +50,8 @@ const Task = ({ entrega, deleteEntrega }) => {
   );
 };
 
-const ShowAlumno = () => {
-
-
+const ShowAlumno = ({correoUsuario}) => {
+  
   const [entregas, setEntregas] = useState([]);
   const entregasCollection = collection(db, 'entregas');
 
@@ -62,13 +62,11 @@ const ShowAlumno = () => {
   // Decodificar los espacios (%20) a espacios normales
   const cursoElegido = decodeURIComponent(cursoElegidoEncoded);
 
-  console.log("curso elegido: " + cursoElegido);
-
   const getEntregas = async () => {
     const data = await getDocs(entregasCollection);
     const filteredData = data.docs
       .map((doc) => ({ ...doc.data(), id: doc.id }))
-      .filter((entrega) => entrega.Curso === cursoElegido); // Filtrar por el campo Curso
+      .filter((entrega) => entrega.Curso === cursoElegido && entrega.Alumno === correoUsuario); // Filtrar por el campo Curso
     setEntregas(filteredData);
   };
 

@@ -62,7 +62,7 @@ function App() {
             <Route path="/edit" element={<Edit/>}/>
             <Route path="/show" element={<Show/>}/>
             <Route path="/edit/:id" element={<Edit />} />
-            <Route path="/cursos/:id" element={<ShowAlumno />} />
+            <Route path="/cursos/:id" element={<ShowAlumno correoUsuario={usuario.email}/>} />
             <Route path="/editAlumno/:id" element={<EditAlumno />} />
             <Route path="*" element={<Home correoUsuario={usuario.email}/>} />
           </Routes>

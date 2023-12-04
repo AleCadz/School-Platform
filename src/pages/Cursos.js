@@ -48,9 +48,16 @@ const Cursos = ({ correoUsuario }) => {
       <h1>Cursos</h1>
       <div className="cursos-grid">
         {/* Botón para agregar nuevo curso */}
-        <Link to="/nuevo-curso" className="btn btn-primary mb-3">
-          Agregar Nuevo Curso
-        </Link>
+        {userType === 'Profesor' && (
+          <Link to="/nuevo-curso" className="btn btn-primary mb-3">
+            Agregar Nuevo Curso
+          </Link>
+        )}
+        {userType === 'Profesor' && (
+          <Link to="/create" className="btn btn-primary mb-3">
+            Agregar tarea
+          </Link>
+        )}
         {/* Mapeo de los cursos existentes */}
         {cursos.map((curso, index) => (
           <Link

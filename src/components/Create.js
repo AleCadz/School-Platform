@@ -5,18 +5,18 @@ import { db } from "../firebaseConfig/firebase"
 
 const Create = () => {
     const [alumno, setAlumno] = useState('')
-    const [contenido, setContenido] = useState('')
     const [curso, setCurso] = useState('')
-    const [tarea, setTarea] = useState('')
-    const [rutaCurso, setRutaCurso] = useState('')
     const navigate = useNavigate()
+    const [descripcion, setDescripcion] = useState('')
+    const [fechaEntrega, setFechaEntrega] = useState('')
+    const [titulo, setTitulo] = useState('')
 
     const entregasCollection = collection(db, "entregas")
 
     const store = async (e) => {
 
         e.preventDefault()
-        await addDoc(entregasCollection, { Alumno: alumno, Contenido: contenido, Curso: curso, Tarea: tarea, RutaCurso: rutaCurso })
+        await addDoc(entregasCollection, { Titulo: titulo, Alumno: alumno, Descripcion: descripcion, Curso: curso, FechaEntrega: fechaEntrega })
         navigate('/create')
 
     }
@@ -30,8 +30,8 @@ const Create = () => {
                         <div className='mb-3'>
                             <label className='form-label'>Titulo</label>
                             <input
-                                value={alumno}
-                                onChange={(e) => setAlumno(e.target.value)}
+                                value={titulo}
+                                onChange={(e) => setTitulo(e.target.value)}
                                 type="text"
                                 className='form-control'
                             />
@@ -40,8 +40,8 @@ const Create = () => {
                         <div className='mb-3'>
                             <label className='form-label'>Descripcion</label>
                             <input
-                                value={contenido}
-                                onChange={(e) => setContenido(e.target.value)}
+                                value={descripcion}
+                                onChange={(e) => setDescripcion(e.target.value)}
                                 type="text"
                                 className='form-control'
                             />
@@ -58,20 +58,20 @@ const Create = () => {
                         </div>
 
                         <div className='mb-3'>
-                            <label className='form-label'>Fecha de entrega</label>
+                            <label className='form-label'>Alumno</label>
                             <input
-                                value={tarea}
-                                onChange={(e) => setTarea(e.target.value)}
+                                value={alumno}
+                                onChange={(e) => setAlumno(e.target.value)}
                                 type="text"
                                 className='form-control'
                             />
                         </div>
 
                         <div className='mb-3'>
-                            <label className='form-label'>Ruta curso</label>
+                            <label className='form-label'>Fecha de entrega</label>
                             <input
-                                value={rutaCurso}
-                                onChange={(e) => setRutaCurso(e.target.value)}
+                                value={fechaEntrega}
+                                onChange={(e) => setFechaEntrega(e.target.value)}
                                 type="text"
                                 className='form-control'
                             />
