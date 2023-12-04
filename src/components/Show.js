@@ -10,7 +10,7 @@ import withReactContent from 'sweetalert2-react-content';
 const MySwal = withReactContent(Swal);
 
 const Task = ({ entrega, deleteEntrega }) => {
-  const { id, Alumno, Curso, Tarea, Contenido } = entrega;
+  const { id, Alumno, Curso, Descripcion, FechaEntrega, Titulo } = entrega;
   const storageRef = ref(storage, `${id}`);
 
   const confirmDelete = () => {
@@ -46,13 +46,11 @@ const Task = ({ entrega, deleteEntrega }) => {
   return (
     <div className="card mb-3">
       <div className="card-body">
-        <h5 className="card-title">{Alumno}</h5>
+      <h5 className="card-title">{Titulo}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{Curso}</h6>
-        <p className="card-text">{Tarea}</p>
-        <p className="card-text">{Contenido}</p>
-        <Link to={`/edit/${id}`} className="btn btn-primary me-2">
-          Editar
-        </Link>
+        <h6 className="card-subtitle mb-2 text-muted">{FechaEntrega}</h6>
+        <p className="card-text">{Alumno}</p>
+        <p className="card-text">{Descripcion}</p>
         <button onClick={confirmDelete} className="btn btn-danger">
           Borrar
         </button>
@@ -90,9 +88,6 @@ const Show = () => {
         <div className="col">
           <div className="d-grid gap-2">
             <h1>Tareas de los alumnos</h1>
-            <Link to="/create" className="btn btn.secondary mt-2 mb-2">
-              <h1>Crear nueva tarea</h1>
-            </Link>
           </div>
           <div className="row row-cols-1 row-cols-md-2 g-4">
             {entregas.map((entrega) => (
