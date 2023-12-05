@@ -13,18 +13,18 @@ const Maestros = () => {
             secondColumnText3: 'example@gmail.com',
         },
         {
-            firstColumnText1: 'Dra. María García',
-            firstColumnText2: 'Inteligencia Artificial',
+            firstColumnText1: 'Ing. Paulino Sanchez Perez',
+            firstColumnText2: 'Enrutamiento web',
             secondColumnText1: '831-YYY-YYY',
-            secondColumnText2: 'maria@gmail.com',
-            secondColumnText3: 'maria@gmail.com',
+            secondColumnText2: 'papulino@gmail.com',
+            secondColumnText3: 'papulino@gmail.com',
         },
         {
-            firstColumnText1: 'Lic. Juan Pérez',
-            firstColumnText2: 'Base de Datos',
+            firstColumnText1: 'Lic. Marco Antonio Solis',
+            firstColumnText2: 'Ingles',
             secondColumnText1: '831-ZZZ-ZZZ',
-            secondColumnText2: 'juan@gmail.com',
-            secondColumnText3: 'juan@gmail.com',
+            secondColumnText2: 'marco@gmail.com',
+            secondColumnText3: 'marco@gmail.com',
         },
     ];
 

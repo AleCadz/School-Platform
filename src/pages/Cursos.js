@@ -3,7 +3,7 @@ import './Cursos.css';
 import { Link } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebaseConfig/firebase';
-//a
+
 const Cursos = ({ correoUsuario }) => {
   const [userType, setUserType] = useState('');
   const [cursos, setCursos] = useState([]);

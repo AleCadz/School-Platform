@@ -27,7 +27,7 @@ const Navbar = () => {
           Maestros
         </Link>
         <Link to="/documentos" className="button-text" onClick={() => handleButtonClick("Documentos")}>
-          Documentos
+          Contacto
         </Link>
         {/* Agrega más elementos de texto según sea necesario */}
         <h2><button className='btn btn-primary' onClick={()=>signOut(auth)}>Cerrar sesion</button></h2>

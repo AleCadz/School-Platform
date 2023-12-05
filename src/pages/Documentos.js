@@ -1,79 +1,46 @@
-import React, { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebaseConfig/firebase';
+// Documentos.js
+import React from 'react';
+import './Tareas.css';
+import logo from '../assets/logo.png';
 
 const Documentos = () => {
-  const [nuevoCurso, setNuevoCurso] = useState({
-    title: '',
-    image: '', // Puedes manejar la imagen de manera similar a cómo lo haces en el componente Cursos
-    link: '', // URL del nuevo curso
-  });
+    const datosProfesoresProps = [
+        {
+            firstColumnText1: 'Alejandro del Castillo Díaz',
+            firstColumnText2: 'Creador del sitio web',
+            secondColumnText1: '831-107-5453',
+            secondColumnText2: 'alejandrodelcastillodiaz@gmail.com',
+            secondColumnText3: 'delcastillo.diaz.20067@itsmante.edu.mx',
+        }
+    ];
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNuevoCurso({ ...nuevoCurso, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Agregar el nuevo curso a la base de datos
-      const cursosCollection = collection(db, 'cursos');
-      await addDoc(cursosCollection, nuevoCurso);
-
-      // Reiniciar el formulario después de agregar el curso
-      setNuevoCurso({
-        title: '',
-        image: '',
-        link: '',
-      });
-
-      // Puedes agregar lógica adicional, como redirigir a la página de cursos, mostrar un mensaje de éxito, etc.
-    } catch (error) {
-      console.error('Error al agregar el curso:', error);
-    }
-  };
-
-  return (
-    <div>
-      <h1>Agregar Nuevo Curso</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">
-            Título del Curso
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            name="title"
-            value={nuevoCurso.title}
-            onChange={handleInputChange}
-          />
+    return (
+        <div className="Documentos-container" style={{ display: 'flex' }}>
+            <div style={{ borderRight: '1px solid #ccc', paddingRight: '20px' }}>
+                <div className="tareas-section" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+                    <div style={{ paddingLeft: '20px' }}>
+                        <img src={logo} alt="logo" className="image" />
+                    </div>
+                    <div style={{ marginBottom: '50px' }}>
+                        <h3>¡Contacta al creador del sitio!</h3>
+                    </div>
+                </div>
+            </div>
+            <div className="profesores-grid">
+                {datosProfesoresProps.map((profesor, index) => (
+                    <div key={index} className="profesor-card">
+                        <div>
+                            <h4>{profesor.firstColumnText1}</h4>
+                            <p>{profesor.firstColumnText2}</p>
+                            <p>{profesor.secondColumnText1}</p>
+                            <p>{profesor.secondColumnText2}</p>
+                            <p>{profesor.secondColumnText3}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-        <div className="mb-3">
-          {/* Input para la imagen */}
-        </div>
-        <div className="mb-3">
-          <label htmlFor="link" className="form-label">
-            Enlace del Curso
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="link"
-            name="link"
-            value={nuevoCurso.link}
-            onChange={handleInputChange}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Agregar Curso
-        </button>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default Documentos;
